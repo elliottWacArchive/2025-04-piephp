@@ -1,0 +1,1 @@
+<h1>Détails de l'utilisateur</h1>
