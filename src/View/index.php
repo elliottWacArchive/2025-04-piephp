@@ -11,7 +11,7 @@
     <header>
         <nav>
             <ul>
-                <li><a href="/PiePHP/">Accueil</a></li>
+                <li><a href="/PiePHP/user/accueil">Accueil</a></li>
                 <li><a href="/PiePHP/user/register">Inscription</a></li>
                 <li><a href="/PiePHP/user/login">Connexion</a></li>
                 <li><a href="/PiePHP/user/show">Mon Compte</a></li>

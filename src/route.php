@@ -2,7 +2,6 @@
 
 use Core\Router;
 
-// Ajouter cette ligne pour définir la route racine
 Router::connect('/', [
     'controller' => 'App',
     'action' => 'index'
@@ -10,11 +9,21 @@ Router::connect('/', [
 
 Router::connect('/user/register', [
     'controller' => 'User',
-    'action' => 'test'
+    'action' => 'add'
 ]);
 
 Router::connect('/user/login', [
     'controller' => 'User',
-    'action' => 'test'
+    'action' => 'login'
+]);
+
+Router::connect('/user/accueil', [
+    'controller' => 'User',
+    'action' => 'accueil'
+]);
+
+Router::connect('/user/show', [
+    'controller' => 'User',
+    'action' => 'show'
 ]);
 ?>
