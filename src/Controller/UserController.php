@@ -89,6 +89,34 @@ class UserController extends Controller
     {
         $this->render('register');
     }
+
+    public function logoutAction()
+    {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        
+        $_SESSION = [];
+        
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(
+                session_name(),
+                '',
+                time() - 42000,
+                $params["path"],
+                $params["domain"],
+                $params["secure"],
+                $params["httponly"]
+            );
+        }
+        
+        session_destroy();
+        
+        header('Location: /PiePHP/user/login');
+        exit;
+    }
+
     public function registerAction()
     {
         $error = null;
@@ -108,16 +136,18 @@ class UserController extends Controller
                     $hashedPassword = $password;
                     
                     $userModel = new \Model\UserModel($email, $hashedPassword);
-                    $userId = $userModel->save();
+                    $userModel->save();
                     
-                    if ($userId) {
+                    $user = $userModel->login();
+                    if ($user) {
+                        session_start();
+                        $_SESSION['user_id'] = $user['id'];
                         header('Location: /PiePHP/user/show');
                         exit;
                     } else {
                         $error = "Erreur lors de l'inscription.";
                     }
                 } catch (\PDOException $e) {
-                    // Gestion des erreurs de base de données
                     $error = "Erreur de base de données: " . $e->getMessage();
                 }
             }
