@@ -20,13 +20,8 @@
     </header>
 
     <main>
-        <!-- C'est ici que la vue spécifique sera insérée -->
         <?php echo $view; ?>
     </main>
-
-    <footer>
-        <!-- Pied de page -->
-    </footer>
 </body>
 
 <style>
