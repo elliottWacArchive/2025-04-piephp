@@ -5,11 +5,14 @@ namespace Core;
 class Controller
 {
     protected static $_render;
+    protected $request;
     
     public function __construct()
     {
+        $this->request = new Request();
         // echo __CLASS__ . ' [OK] ' . PHP_EOL;
     }
+    
     protected function render($view, $scope = [])
     {
         // Extraction des variables pour les rendre disponibles dans la vue
